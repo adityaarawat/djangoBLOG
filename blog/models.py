@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-class categories(models.Model):
+
+class category(models.Model):
     category_name=models.CharField(max_length=250,unique=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -19,7 +20,7 @@ STATUS_CHOICES=(
 class blog(models.Model):
     title=models.CharField(max_length=100)
     slug=models.SlugField(max_length=150, unique=True, blank=True)
-    category=models.ForeignKey(categories,on_delete=models.CASCADE)
+    category=models.ForeignKey(category,on_delete=models.CASCADE)
     author=models.ForeignKey(User, on_delete=models.CASCADE)
     featured_image=models.ImageField(upload_to='uploads/%Y/%m/%d')
     short_description=models.TextField(max_length=500)
