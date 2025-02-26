@@ -23,5 +23,10 @@ def blogs(request,slug):
         'singleBlog':singleBlog
     }
     return render(request,'blog.html',context)
+
+
+
+def search_view(request):
+    return HttpResponse("Working")
   
     
