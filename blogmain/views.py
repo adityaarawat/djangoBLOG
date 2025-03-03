@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from blog.models import about,blog
 from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 from django.contrib import auth
 
 def home(request):
@@ -51,3 +52,5 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
+

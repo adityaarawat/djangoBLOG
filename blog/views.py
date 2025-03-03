@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import blog ,category
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -26,7 +26,14 @@ def blogs(request,slug):
 
 
 
-def search_view(request):
-    return HttpResponse("Working")
-  
+
+def search(request):
+    return render(request, 'search.html')  # Ensure 'search.html' exists in your templates folder
+
+
+
+
+
+
+
     
