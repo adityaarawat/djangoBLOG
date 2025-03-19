@@ -26,7 +26,7 @@ urlpatterns = [
     path('category/', include('blog.urls')),
     path('blogs/<slug:slug>/',blogsMain.blogs,name='blogs'),
     # search url
-     path('search/', blogsMain.search, name="search"),
+    path('search/', blogsMain.search, name='search'),
     path('register/',views.register,name='register'),
     path('login/',views.login,name='login'),
     path('logout/',views.logout,name='log'),
