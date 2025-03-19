@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <!-- leftsideBar -->
+    {% include 'dashboard/Sidebar.html' %}
+     <!--right SideBar-->
+    
+     <div class="col-md-9">
+      {% if perms.auth.view_user %}
+        <h2>All USers</h2>
+        <a href="{% url 'addUser' %}"><button class="text-light bg-dark p-1 m-2 " style="float: right;">Add User</button></a>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Staff</th>
+                    <th>SuperUser</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in users %}
+                  <tr>
+                    <th>{{forloop.counter}}</th>
+                    <td>{{i.first_name}} {{i.last_name}}</td>
+                    <td>{{i.username}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.is_active}}</td>
+                    <td>{{i.is_staff}}</td>
+                    <td>{{i.is_superuser}}</td>
+                    <td>
+                        <span>
+                            <a href="{% url 'editUser' i.pk %}"><i class="fa-solid fa-pen-to-square text-success"></i></a>
+                        </span>
+                        &nbsp;
+                        <span>
+                            <a href="{% url 'deleteUser' i.pk %}"><i class="fa-solid fa-trash text-danger"></i></a>
+                        </span>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h3 style="margin-top: 1rem;">You do not have permission to view this page</h3>
+        {% endif %}
+     </div>
+</div>
+{% endblock %}

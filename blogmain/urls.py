@@ -32,4 +32,6 @@ urlpatterns = [
     path('logout/',views.logout,name='log'),
     #dashboard
     path('dashboard/',include('dashboards.urls')),
+    #users
+    path('dashboard/users/',include('user.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
