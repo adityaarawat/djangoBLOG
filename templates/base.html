@@ -15,7 +15,7 @@
         <header class="blog-header py-3">
           <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
-              <a class="blog-header-logo text-dark" href="/">BlogVerse</a>
+              <a class="blog-header-logo text-dark" style="font-size: 3vw;" href="/">BlogVerse</a>
             </div>
             <div class="col-4">
               <form action="{% url 'search' %}" method="GET">
@@ -31,7 +31,7 @@
               <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
               <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
               {% else %}
-              <span>Your Logged in as {{user}}</span>
+             
               
                &emsp;
                <span><a href="{% url 'dashboard' %}">Dashboard</a></span>
@@ -48,6 +48,9 @@
             <a class="p-2 text-muted" href="{% url 'category' cat.id %}">{{cat.category_name}}</a>
             {% endfor %}
           </nav>
+          {% if user.is_authenticated %}
+          <span>Your Logged in as <b>{{user}}</b> </span>
+          {% endif %}
         </div>
      
         {% block content %}
