@@ -33,5 +33,7 @@ urlpatterns = [
     #dashboard
     path('dashboard/',include('dashboards.urls')),
     #users
-    path('dashboard/users/',include('user.urls'))
+    path('dashboard/users/',include('user.urls')),
+    path('email/',views.email,name='email'),
+    path('contact/', views.send_email, name='send_email'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
