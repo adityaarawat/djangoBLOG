@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from blog.models import about,blog
 from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.core.mail import send_mail
+
 from django.contrib import messages
 from django.contrib import auth
 
@@ -60,9 +60,10 @@ def email(request):
     return render(request,'email_form.html')
 
 
+# views.py
+from django.conf import settings
 from django.core.mail import send_mail
-from django.contrib import messages
-from django.shortcuts import render, redirect
+
 
 def send_email(request):
     if request.method == 'POST':
@@ -71,23 +72,24 @@ def send_email(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        # Include user's email in the body (not as the sender)
+        # Construct full message
         full_message = f"From: {name} <{user_email}>\n\nMessage:\n{message}"
 
         try:
             send_mail(
                 subject,
                 full_message,
-                'aadityarawatt@gmail.com',  
-                ['aadityarawatt@gmail.com'],  
+                settings.DEFAULT_FROM_EMAIL,     # Sender
+                [settings.TO_EMAIL],             # Recipient(s)
                 fail_silently=False,
             )
             messages.success(request, 'Your message has been sent!')
         except Exception as e:
             messages.error(request, f"Failed to send email: {e}")
 
-        return redirect('send_email')  # Reload the form
+        return redirect('send_email')
 
     return render(request, 'email_form.html')
+
 
 

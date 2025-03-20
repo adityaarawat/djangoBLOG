@@ -53,6 +53,9 @@
         <button type="submit" class="btn btn-warning">Send Message</button>
       </div>
     </form>
+    {% for message in messages %}
+  <p>{{ message }}</p>
+{% endfor %}
     <a href="{% url 'home' %}" style="text-decoration: none; font-size: 2rem; font-weight: bold; color: black;" class="mt-4"><--</a>
   </div>
 
